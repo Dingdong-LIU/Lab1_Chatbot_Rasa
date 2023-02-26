@@ -1,0 +1,12 @@
+.vscode
+.idea
+*/models/*
+*/.rasa/*
+.DS_Store
+venv
+**/__pycache__
+00-rasa-init
+
+**/*.db*
+*/story_graph.dot
+*/.rasa
