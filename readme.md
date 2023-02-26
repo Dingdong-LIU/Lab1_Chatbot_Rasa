@@ -68,31 +68,31 @@ You can also refer to the rasa's [learning center website](https://learning.rasa
 
 It helps to understand custom actions and slots before we talk about forms. In this simple bot we show how they work by keeping track of a users name. 
 
-Code can be found in the `01-actions` folder.
+Code can be found in the `./chatbot/01-actions` folder.
 
 ### 2. Slots 
 
 It helps to understand custom actions and slots before we talk about forms. In this simple bot we show how they work by keeping track of a users name. 
 
-Code can be found in the `02-slots` folder.
+Code can be found in the `./chatbot/02-slots` folder.
 
 ### 3. Simple Forms with Conditional Slots
 
 If we want to query multiple things from the user, it may be best to use forms instead of custom actions. Luckily for us, we can use our `RulePolicy` to help us out and we can configure our slots to ignore entities mentioned outside of our form.
 
-Code can be found in the `03-conditions` folder. 
+Code can be found in the `./chatbot/03-conditions` folder. 
 
 ### 4. From Text
 
 You can fill slots from many types of input, this includes raw text! 
 
-Code can be found in the `04-from-text` folder.
+Code can be found in the `./chatbot/04-from-text` folder.
 
 ### 5. Form Validation 
 
 What if we want to validate the input of our form? We don't want to have a name that's an empty string after all! 
 
-Code can be found in the `05-validation` folder.
+Code can be found in the `./chatbot/05-validation` folder.
 
 
 ## Known Issue
