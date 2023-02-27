@@ -11,3 +11,4 @@ venv
 */story_graph.dot
 */.rasa
 .rasa
+models

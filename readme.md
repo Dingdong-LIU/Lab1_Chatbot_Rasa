@@ -45,7 +45,7 @@ Version: 3.4.4
 ...
 ```
 
-Note: It is very important that you installed <code>rasa 3.x.x</code>. This tutorial is not compatible with <code>rasa 2</code>. If you need to use <code>rasa 2</code>, you can refer to previous tutorial notes (See item 1 under [Known Issue](#known-issue)).
+Note: It is very important that you installed <code>rasa 3.x.x</code>. This tutorial is **NOT** tested with <code>rasa 2</code> (and probably **incompatible**). If you need to use <code>rasa 2</code>, you can refer to previous tutorial notes (See item 1 under [Known Issue](#known-issue)).
 
 ## Basic Use of Rasa
 
@@ -97,4 +97,4 @@ Code can be found in the `./chatbot/05-validation` folder.
 
 ## Known Issue
 
-1. <code>Rasa 2.x</code> is **NOT** compatible with <code>Apple Silicon Mac</code>. If you prefer <code>Rasa 2.x</code>, you can refer to last year's tutorial by Qingyu: [Qingyu's Rasa 2 Tutorial](https://github.com/QingyuGuo/rasa-2.5-tutorial).
+1. If you prefer <code>Rasa 2.x</code>, you can refer to last year's tutorial by Qingyu: [Qingyu's Rasa 2 Tutorial](https://github.com/QingyuGuo/rasa-2.5-tutorial). Qingyu's tutorial based on <code>Rasa 2.x</code> is **NOT** compatible with <code>Apple Silicon Mac</code>.
