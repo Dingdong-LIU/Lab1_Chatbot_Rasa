@@ -6,6 +6,9 @@
 venv
 **/__pycache__
 00-rasa-init
+!00-rasa-init/README.md
+
+
 
 **/*.db*
 */story_graph.dot
