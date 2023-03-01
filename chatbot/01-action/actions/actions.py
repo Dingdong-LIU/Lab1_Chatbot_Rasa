@@ -69,6 +69,7 @@ class ActionRememberWhere(Action):
         dispatcher.utter_message(text=msg)
         
         return [SlotSet("location", current_place)]
+        # return []
 
 
 class ActionTimeDifference(Action):
@@ -88,7 +89,7 @@ class ActionTimeDifference(Action):
             return []
         
         if not timezone_to:
-            msg = "I didn't the timezone you'd like to compare against. Are you sure it's spelled correctly?"
+            msg = "I didn't recognize the timezone you'd like to compare against. Are you sure it's spelled correctly?"
             dispatcher.utter_message(text=msg)
             return []
         

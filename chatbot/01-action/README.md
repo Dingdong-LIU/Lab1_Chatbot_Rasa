@@ -8,6 +8,8 @@ pip install arrow dateparser
 ```
 We use these two packages so that we don't need to worry about formatting date and time.
 
+The custom action tries to fetch a detected entity for a place. If it cannot find one in the tracker, it tries to fail gracefully. This is a pattern that you'll see a lot in custom actions. You should always consider how to best catch unexpected behavior.
+
 Check out the following code snippet from `./chatbot/01-action/actions/actions.py`
 
 ```python
@@ -42,4 +44,7 @@ class ActionTellTime(Action):
 There are a few parts worth discussing:
 * We are defining a class `ActionTellTime` that inherits from the `Action` class found in the `rasa_sdk` module. Whenever you write a custom action, you need to inherit from this class because it handles a lot of boilerplate on your behalf.
     * The `name(self)` function defines the name of this action. This name also needs to be copied to `domain.yml file`. Make sure you *DO NOT* misspell it when using it in your `stories.yml` / `rules.yml` / `domain.yml` files.
-    * The run method contains the logic for your custom action. This method receive 
+    * The `run` method contains the logic for your custom action. This method receives information from the conversation so far from the `tracker` input. You can learn more about the information it can provide by checking [the docs](https://rasa.com/docs/action-server/sdk-tracker/).
+* To send messages to the end user you'll want to use the `dispatcher.utter_message` method. You can also send images or buttons with this method, but in our example, we only use it to send text messages.
+* We're mocking a database here with our `city_db` dictionary. We're using this "database" to convert a city name to a timezone.
+
