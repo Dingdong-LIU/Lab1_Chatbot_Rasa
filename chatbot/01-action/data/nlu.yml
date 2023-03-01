@@ -1,5 +1,4 @@
 version: "2.0"
-
 nlu:
 - intent: greet
   examples: |
@@ -16,7 +15,7 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
-
+    - hi there
 - intent: goodbye
   examples: |
     - good afternoon
@@ -30,7 +29,6 @@ nlu:
     - see you around
     - bye bye
     - see you later
-
 - intent: affirm
   examples: |
     - yes
@@ -39,7 +37,6 @@ nlu:
     - of course
     - that sounds good
     - correct
-
 - intent: deny
   examples: |
     - no
@@ -49,7 +46,6 @@ nlu:
     - don't like that
     - no way
     - not really
-
 - intent: mood_great
   examples: |
     - perfect
@@ -66,7 +62,6 @@ nlu:
     - so so perfect
     - so good
     - so perfect
-
 - intent: mood_unhappy
   examples: |
     - my day was horrible
@@ -83,17 +78,39 @@ nlu:
     - extremly sad
     - so saad
     - so sad
-
 - intent: bot_challenge
   examples: |
     - are you a bot?
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-
-- intent: give_time
+- intent: inquire_time
   examples: |
-    - can you tell me what time it is
-    - tell me the time
-    - got the time
-    - what time is it
+    - what time is it?
+    - what time is it in [Amsterdam](place)?
+    - what time is it in [London](place)?
+    - tell me the time in [Lisbon](place)
+    - what is the current time in [Berlin](place)
+    - what time is it in [amsterdam](place)[amsterdam](place)
+- lookup: place
+  examples: |
+    - brussels
+    - zagreb
+    - london
+    - lisbon
+    - amsterdam
+    - seattle
+- intent: where_i_live
+  examples: |
+    - please remember that i live in [Amsterdam](place)?
+    - my house is in [London](place)?
+    - reminder. i live in [Lisbon](place)
+    - my residence is in [Berlin](place)
+    - remember that i live in [london](place)
+- intent: inquire_time_difference
+  examples: |
+    - time difference between [Amsterdam](place)?
+    - what is my time difference with [London](place)?
+    - how big is the time delta with [Berlin](place)?
+    - is there a time difference with [Lisbon](place)?
+    - what is the time difference with [amsterdam](place)

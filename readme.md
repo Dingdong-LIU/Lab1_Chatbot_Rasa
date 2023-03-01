@@ -8,6 +8,7 @@ This repository contains a collection of tutorials that will help you understand
 This project is built upon the following resources:
 
 1. Rasa Forms course that's hosted on Rasa's [learning center](https://learning.rasa.com/).
+2. A conversational AI with Rasa: [Source Code](httpss://github.com/RasaHQ/conversational-ai-course-3.x)
 
 
 ## Installation 
@@ -52,7 +53,7 @@ Note: It is very important that you installed <code>rasa 3.x.x</code>. This tuto
 ### 0. Initial Project
 It helps to verify the successful installation of `rasa` and helps you understand the basic structure of the Rasa project.
 
-Run the following command line to initiate a new assistant:
+Whenever you want to start a new project, you can run the following command line to initiate a new assistant:
 ```bash
 python -m rasa init --init-dir ./chatbot/00-rasa-init
 ```
@@ -63,6 +64,8 @@ This will start a prompt that will generate a new assistant. You're able to indi
 The assistant that you'll create is called "moodbot". It's a simple assistant that tries to cheer you up if you're sad. If you're happy the bot will just say "goodbye" and if you're sad the bot will try to show you a picture of a cute tiger.
 
 You can also refer to rasa's [learning center](https://learning.rasa.com/conversational-ai-with-rasa/creating-a-new-assistant/#code) website](https://learning.rasa.com/conversational-ai-with-rasa/creating-a-new-assistant/#code) for more detailed explanations. 
+
+## Tutorial on Rasa Functions
 
 ### 1. Custom Actions
 
