@@ -53,9 +53,9 @@ responses:
   - text: "I am a bot, powered by Rasa."
 ...
 ```
-For each input from user, rasa will try to tell what is your intent, for example, you are greeting the chatbot, you are happy, or you are sad in this scenario.
+For each input from a user, rasa will try to tell what is your intent, for example, you are greeting the chatbot, you are happy, or you are sad in this scenario.
 
-Then rasa will give you responses accordingly. Those response can be viewed here. 
+Then rasa will give you responses accordingly. Those responses can be viewed here. 
 
 But a question is, how should rasa respond according to intents? What is the mapping between intents and responses? That is something related to **Dialogue Policies**.
 
@@ -64,9 +64,9 @@ But a question is, how should rasa respond according to intents? What is the map
 
 When we talk about **Dialogue Policies** we're referring to the part of the system that predicts the next action to take. The next action isn't just determined based on the current intent, we typically need to know about the entire conversation so far.
 
-Policies can again be based on rules or on neural methods. Rasa allows you to define your own lightweight rules to define what needs to happen. But in order to allow for generalization Rasa also provides a neural network called TED that picks the next best turn based on the conversation so far and all the conversations that it trained on.
+Policies can again be based on rules or neural methods. Rasa allows you to define your own lightweight rules to define what needs to happen. But to allow for generalization, Rasa also provides a neural network called TED that picks the next best turn based on the conversation so far and all the conversations that it trained on.
 
-In this Tutorial we focused on rule-based approach. But you can also use neural network based approaches in your projects. For more information, you can checkout [Rasa Learning Center](https://learning.rasa.com/).
+In this Tutorial, we focused on a rule-based approach. But you can also use neural network-based approaches in your projects. For more information, you can check out [Rasa Learning Center](https://learning.rasa.com/).
 
 The dialogue policies are mainly defined in `chatbot/00-rasa-init/data/rules.yml`
 
@@ -85,7 +85,7 @@ rules:
   - action: utter_iamabot
 ```
 
-## Conversation Stucuture
+<!-- ## Conversation Stucuture
 
 Sample ones are defined in `chatbot/00-rasa-init/data/stories.yml`.
 
@@ -121,12 +121,12 @@ stories:
   - intent: deny
   - action: utter_goodbye
 
-```
+``` -->
 
 ## Summarization
 
 ### File Structure
-Below are the file structure of a initial Rasa project.
+Below is the file structure of an initial Rasa project.
 ```bash
 00-rasa-init/
 ├── actions
@@ -149,15 +149,16 @@ Below are the file structure of a initial Rasa project.
 └── tests
     └── test_stories.yml
 ```
-An a quick overview of all the basic files:
+
+A quick overview of all the basic files:
 * The `domain.yml` file is the file where everything comes together.
-* The `config.yml` file contains the configuration for your machine learning models.
+* The `config.yml` file contains the configuration for your machine-learning models.
 * The `data` folder contains data that your assistant will learn from.
 * The `nlu.yml` file contains examples for your intents and entities.
 * The `stories.yml` file contains examples of conversations turns.
 * The `rules.yml` file contains predefined rules for the dialogue policies.
 
-We will discuss `actions` in later part of this Tutorial.
+We will discuss `actions` in the later part of this Tutorial.
 
 ### Useful Commands
 There are a few commands that are good to be aware of from the command line.
@@ -167,6 +168,14 @@ There are a few commands that are good to be aware of from the command line.
 * `rasa shell` allows you to chat with a trained assistant.
 * `rasa -h` allows you get receive relevant help text for a command.
 * `rasa` --debug gives you extra log output when running commands.
+
+## Additional Readings Materials (About role of some files)
+
+1. About `domain.yml` file, check this article: [what's in the domain file](https://learning.rasa.com/conversational-ai-with-rasa/domain-file/#whats-in-the-domain-file).
+2. About `data` folder - what is training data and how Rasa will utilize them? Check out this article: [training data rules](https://learning.rasa.com/conversational-ai-with-rasa/training-data-rules/). It includes following content:
+    1. How to tell your chatbot what to do next? How to provide examples for your chatbot to learn from? Use [story](https://learning.rasa.com/conversational-ai-with-rasa/training-data-rules/#stories) which is specified in `story.yml`
+    2. How to set a rule that your chatbot must follow? Use [rule](https://learning.rasa.com/conversational-ai-with-rasa/training-data-rules/#rules) which is specified in `rules.yml`
+    3. How to teach your chatbot infer correct intents from user inputs? Check out [intent](https://learning.rasa.com/conversational-ai-with-rasa/training-data-rules/#intents) which is specified in `nlu.yml`
 
 ## Q&A Session
 
