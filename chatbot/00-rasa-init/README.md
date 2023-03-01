@@ -5,10 +5,13 @@ Before we head into structure of Rasa, let's first try to talk with the initial 
 ## Try the initial Chatbot
 Type the following command to train and try the initial chatbot.
 ```bash
+cd ./chatbot/00-rasa-init
 rasa train
 rasa shell
 ```
-Say Hi or hello to chatbot and start the conversation.
+Say Hi or hello to chatbot and start the conversation. 
+
+PS: You can try to pretend you are unhappy and see what will happen.
 
 ## Basic Stucture of Rasa
 In general there are two systems inside of Rasa:
