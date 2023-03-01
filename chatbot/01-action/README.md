@@ -1,6 +1,10 @@
-# Custom Actions
+# Entities, Slots & Custom Actions
 
-## Basic Custom Action
+* **Entities**: Numbers, dates, country names, product names, etc in a dialogue. They can be detected automatically.
+* **Slots**: Long term memery in Rasa.
+* **Custom Actions**: Let Rasa do something more than answer to a question.
+
+## Setup
 
 We start the tutorial by showing you how to create a custom action that tells you the time. You will need to install the following packages first:
 ```bash
@@ -8,7 +12,28 @@ pip install arrow dateparser
 ```
 We use these two packages so that we don't need to worry about formatting date and time.
 
-The custom action tries to fetch a detected entity for a place. If it cannot find one in the tracker, it tries to fail gracefully. This is a pattern that you'll see a lot in custom actions. You should always consider how to best catch unexpected behavior.
+To run this project, you need 
+```bash
+# Change directory to 01-action
+cd ./chatbot/01-action
+# Start Action server
+rasa run actions --port 5055
+```
+
+Then open <u>***a second terminal window***</u>, type
+```bash
+# Change directory to 01-action
+cd ./chatbot/01-action
+# Start rasa shell
+rasa shell
+```
+Then you can talk with Rasa in the second terminal window.
+
+PS: Ask Rasa "what time is it?"
+
+## Basic Custom Action
+
+The custom action defined in this project tries to fetch a detected entity for a place. If it cannot find one in the tracker, it tries to fail gracefully (End the conversation but still tell you the UTC time, in this case). This is a pattern that you'll see a lot in custom actions. You should always consider how to best catch unexpected behavior.
 
 Check out the following code snippet from `./chatbot/01-action/actions/actions.py`
 
@@ -48,3 +73,83 @@ There are a few parts worth discussing:
 * To send messages to the end user you'll want to use the `dispatcher.utter_message` method. You can also send images or buttons with this method, but in our example, we only use it to send text messages.
 * We're mocking a database here with our `city_db` dictionary. We're using this "database" to convert a city name to a timezone.
 
+## Entities
+
+Rasa can be trained to detect the intent of an utterance, but it can also detect entities within an utterance. An entity can be any important detail that your assistant could use later in a conversation. This includes:
+
+* Numbers
+* Dates
+* Country names
+* Product names
+
+For example, when you have an utterance like:
+
+> I would like to book a flight to Sydney
+
+Then we'd like to detect `Sydney` as an entity of type "destination" with a value of "Sydney."
+
+In this example, Rasa will try to get your `place` when you answer to its question. To be specific, in the following sample question & utterance:
+
+```text
+It's 14:01 utc now. You can also give me a place.
+Your input ->  I live in london 
+```
+We'd like to detect `london` as an entity of "place".
+
+To do this, we provide examples of entities in your `nlu.yml` file:
+1. Use lookup tables to generate case-sensitive regular expression patterns
+```yml
+# line 95
+- lookup: place
+  examples: |
+    - brussels
+    - zagreb
+    - london
+    - lisbon
+    - amsterdam
+    - seattle
+```
+2. Train our own machine learning model to detect entities. (In this example, we use Rasa's built "DIET" model). We provided the following training data.
+```yml
+# line 87
+- intent: inquire_time
+  examples: |
+    - what time is it?
+    - what time is it in [Amsterdam](place)?
+    - what time is it in [London](place)?
+    - tell me the time in [Lisbon](place)
+    - what is the current time in [Berlin](place)
+    - what time is it in [amsterdam](place)[amsterdam](place)
+# Also more examples in line103 - line116
+```
+
+Here are other ways to detect entities, such as using regular expressions. You can refer to [this guide](https://learning.rasa.com/conversational-ai-with-rasa/entities/) for more methods.
+
+
+## Slots
+
+We also want Rasa to remember our location. This involves the use of slots. According to offical guides's description:
+
+>In Rasa, slots are your <u>**long term memory**</u> in a conversation. If there's any information you'd like to store for later use, you'd typically want to <u>**store it in a slot**</u>. It's important to understand that a slot is not the same thing as an entity. You could store any information in a slot, even if no entity has been detected. That said, it is very common to fill a slot value with an entity value.
+
+To use a slot, we first define it in the `domain.yml` file. 
+
+```yml
+slots:
+  location:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: custom
+        entity: place
+``` 
+The slot is set to `influence_conversation` and use `custom` mappings. 
+
+`influence_conversation` means we that slot can influence a story. So we have to include `slot_was_set` in the `stories.yml` file. These `slot_was_set` events will now be included as training data for the machine learning pipelines in your assistant.
+
+
+Slot mappings allow you to define how each slot will be filled in. `custom` mappings mean we need to specify how to fill this slot by ourselves. We specified this in `actions.py` file. We also have other automatic filling options such as `from_entity`. Details can be found [here](https://learning.rasa.com/conversational-ai-with-rasa/slots/#slot-mappings).
+
+## Q&A
+
+Any questions so far?
