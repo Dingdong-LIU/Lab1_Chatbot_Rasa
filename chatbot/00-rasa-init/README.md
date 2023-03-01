@@ -158,7 +158,7 @@ A quick overview of all the basic files:
 * The `stories.yml` file contains examples of conversations turns.
 * The `rules.yml` file contains predefined rules for the dialogue policies.
 
-We will discuss `actions` in the later part of this Tutorial.
+> We will discuss `actions` in the later part of this Tutorial.
 
 ### Useful Commands
 There are a few commands that are good to be aware of from the command line.
