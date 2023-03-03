@@ -5,14 +5,20 @@ This is a simple Rasa bot that uses a form to create a daily log of health infor
 1. Install Rasa Open Source: https://rasa.com/docs/rasa/user-guide/installation/
 2. Train the model:
 
-``rasa train``
+```bash
+rasa train
+```
 
 3. Open a second terminal window and start the action server:
 
-``rasa run actions``
+```bash
+rasa run actions
+```
 
 4. Return to the first terminal window and start the assistant on the command line:
 
-``rasa shell``
-
+```bash
+rasa shell
+```
+### Sample Output
 ![wellness-bot-conversation](https://github.com/karen-white/wellness-check-bot/blob/master/images/bot_conversation.png?raw=true)
