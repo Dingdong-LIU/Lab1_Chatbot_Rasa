@@ -1,5 +1,9 @@
 version: '3.1'
 
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: false
+
 intents:
   - greet
   - goodbye
@@ -9,6 +13,20 @@ intents:
   - inform
   - thankyou
   - out_of_scope
+
+slots:
+  confirm_exercise:
+    type: unfeaturized
+  exercise:
+    type: unfeaturized
+  sleep:
+    type: unfeaturized
+  diet:
+    type: unfeaturized
+  stress:
+    type: unfeaturized
+  goal:
+    type: unfeaturized
 
 entities:
   - exercise
@@ -57,23 +75,8 @@ responses:
   utter_ask_continue:
   - text: "Sorry, I don't quite understand. Do you want to continue?"
 
-slots:
-  confirm_exercise:
-    type: unfeaturized
-  exercise:
-    type: unfeaturized
-  sleep:
-    type: unfeaturized
-  diet:
-    type: unfeaturized
-  stress:
-    type: unfeaturized
-  goal:
-    type: unfeaturized
 
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: false
+
 
 forms:
   - health_form
