@@ -31,8 +31,6 @@ nlu:
     - bye bye
     - see you later
     - thanks, goodbye
-    - bye now
-    - thanks, bye!
 - intent: affirm
   examples: |
     - yes
@@ -96,14 +94,6 @@ nlu:
     - are you a human?
     - am I talking to a bot?
     - am I talking to a human?
-    - by the way, are you a human?
-- intent: buy_fancy_pizza
-  examples: |
-    - i'd like to buy a fancy pizza
-    - i want a fancy pizza
-    - can i buy a fancy pizza
-    - I'm interested in a fancy flattened bread of Italian origin
-    - buy a fancy pizza
 - intent: buy_pizza
   examples: |
     - i'd like to buy a pizza
@@ -111,7 +101,6 @@ nlu:
     - can i buy a pizza
     - I'm interested in a savory round flattened bread of Italian origin
     - i want to buy a pizza
-    - i want to order a pizza
 - intent: inform
   examples: |
     - i'd like a [large](pizza_size) pizza
@@ -130,8 +119,6 @@ nlu:
     - [hawai](pizza_type)
     - [veggie](pizza_type)
     - [fungi](pizza_type)
+    - i want a [large](pizza_size) pizza
     - [vegggie](pizza_type)
-    - i want to buy a [large](pizza_size) pizza
-    - [large](pizza_size)
-    - [large](pizza_size)
-    - [pepperoni](pizza_type)
+    - [veggie](pizza_type)
