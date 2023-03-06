@@ -67,34 +67,74 @@ You can also refer to rasa's [learning center](https://learning.rasa.com/convers
 
 ## Tutorial on Rasa Functions
 
-### 1. Custom Actions
+### 1. Entities, Slots & Custom Actions
 
-It helps to understand custom actions and slots before we talk about forms. In this simple chatbot, we show how they work by keeping track of a user's name. 
+It helps to understand custom actions and slots before we talk about forms. In this simple chatbot, we show how they work by identifying and keeping track of where a user lives. 
 
-The code can be found in the `./chatbot/01-actions` folder.
+The code can be found in the `./chatbot/01-custom-actions` folder.
 
-### 2. Slots 
+### 2. Form
+We created a pizza ordering chatbot that collects information according to a question table. 
 
-It helps to understand custom actions and slots before we talk about forms. In this simple chatbot, we show how they work by keeping track of a user's name. 
-The code can be found in the `./chatbot/02-slots` folder.
+The code can be found in the `./chatbot/02-forms-pizza-ordering-chatbot`.
 
-### 3. Simple Forms with Conditional Slots
+## Additional Examples
+You can refer to [Rasa's learning center](https://learning.rasa.com/) for more examples.
 
-If we want to query multiple things from the user, it may be best to use forms instead of custom actions. Luckily for us, we can use our `RulePolicy` to help us out and we can configure our slots to ignore entities mentioned outside of our form.
 
-The code can be found in the `./chatbot/03-conditions` folder. 
+## Web Interface
 
-### 4. From Text
+### Chatroom
 
-You can fill slots from many types of input, this includes raw text! 
+The project `./UI/chatroom-source` provides a basic interface for interacting with bots in the webpage, which supports text and voice as input. Please refer to https://github.com/scalableminds/chatroom for more details.
 
-The code can be found in the `./chatbot/04-from-text` folder.
+* In your Rasa bot setup, make sure to include the Rasa [REST channel](https://rasa.com/docs/rasa/user-guide/connectors/your-own-website/#rest-channels) in your `credentials.yml` file:
+```bash
+rest:
+  # pass
+```
 
-### 5. Form Validation 
+* Install the dependencies for web application
+```bash
+cd UI/chatroom-source
+# install dependencies if you have not installed
+yarn install
+``` 
 
-What if we want to validate the input of our form? We don't want to have a name that's an empty string after all! 
+* Usage - You need to open 3 terminal/shell windows:
 
-The code can be found in the `./chatbot/05-validation` folder.
+
+*Terminal-1*: For Rasa server. Depending on your setup you might need to add CORS headers, e.g. `--cors "*"`.
+
+```bash
+# change to chatbot directory (just an example)
+cd chatbot/02-forms-pizza-ordering-chatbot
+# Run Rasa server
+rasa run --credentials ./credentials.yml  --enable-api --auth-token XYZ123 --model ./models --endpoints ./endpoints.yml --cors "*"
+```
+
+*Terminal-2*: Run Rasa action server if you need customized actions
+
+```bash
+# change to chatbot directory (just an example)
+cd chatbot/02-forms-pizza-ordering-chatbot
+# Run Rasa action server
+rasa run actions
+```
+
+*Terminal 3*: For web application
+   
+```bash
+cd UI/chatroom-source
+# run the local host
+yarn serve
+```
+Open `http://localhost:8080` in your browser.
+
+
+### Interactive Voice Response
+
+
 
 
 ## Known Issue

@@ -5,6 +5,9 @@ To run locally, you need to start two webservices. One for the front-end, one fo
 ```bash
 # This is the chatroom frontend. 
 python -m http.server
+```
+In a second terminal window:
+```bash
 # This is the Rasa backend.
 rasa run --enable-api --cors="*"
 ```
