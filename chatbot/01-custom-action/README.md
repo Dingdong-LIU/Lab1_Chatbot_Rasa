@@ -8,7 +8,7 @@
 
 We start the tutorial by showing you how to create a custom action that tells you the time. You will need to install the following packages first:
 ```bash
-pip install arrow dateparser
+pip install arrow dateparser geopy timezonefinder
 ```
 We use these two packages so that we don't need to worry about formatting date and time.
 
@@ -71,7 +71,7 @@ There are a few parts worth discussing:
     * The `name(self)` function defines the name of this action. This name also needs to be copied to the `domain.yml`` file`. Make sure you *DO NOT* misspell it when using it in your `stories.yml` / `rules.yml` / `domain.yml` files.
     * The `run` method contains the logic for your custom action. This method receives information from the conversation so far from the `tracker` input. You can learn more about the information it can provide by checking [the docs](https://rasa.com/docs/action-server/sdk-tracker/).
 * To send messages to the end user you'll want to use the `dispatcher.utter_message` method. You can also send images or buttons with this method, but in our example, we only use it to send text messages.
-* We're mocking a database here with our `city_db` dictionary. We're using this "database" to convert a city name to a timezone.
+* The original implementation is mocking a database here with our `city_db` dictionary. We're using `geopy` and `timezonefinder` to convert a city name to a timezone.
 
 ## Entities
 

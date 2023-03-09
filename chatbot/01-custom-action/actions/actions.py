@@ -5,6 +5,9 @@ import dateparser
 from rasa_sdk import Action, Tracker
 from rasa_sdk.events import SlotSet
 from rasa_sdk.executor import CollectingDispatcher
+from geopy.geocoders import Nominatim
+from timezonefinder import TimezoneFinder
+
 
 city_db = {
     'brussels': 'Europe/Brussels', 
@@ -12,10 +15,20 @@ city_db = {
     'london': 'Europe/Dublin',
     'lisbon': 'Europe/Lisbon',
     'amsterdam': 'Europe/Amsterdam',
-    'seattle': 'US/Pacific'
+    'seattle': 'US/Pacific',
+    'hongkong': 'Asia/HongKong'
 }
 
 class ActionTellTime(Action):
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.geolocator = Nominatim(user_agent="anyName")
+        self.tf = TimezoneFinder()
+
+        # coords = geolocator.gecode("Dallas, Texas")
+        # tf = TimezoneFinder()
+        # timezone = tf.timezone_at(lng=coords.longitude, lat=coords.latitude)
 
     def name(self) -> Text:
         return "action_tell_time"
@@ -31,7 +44,13 @@ class ActionTellTime(Action):
             dispatcher.utter_message(text=msg)
             return []
         
-        tz_string = city_db.get(current_place, None)
+        # Find the timezone
+        coords = self.geolocator.gecode(current_place)
+        tz_string = self.tf.timezone_at(lng=coords.longitude, lat=coords.latitude)
+        # equivalent to
+        # tz_string = city_db.get(current_place, None)
+        # with a larger database
+
         if not tz_string:
             msg = f"It's I didn't recognize {current_place}. Is it spelled correctly?"
             dispatcher.utter_message(text=msg)

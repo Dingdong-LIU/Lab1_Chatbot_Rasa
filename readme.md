@@ -131,10 +131,21 @@ yarn serve
 ```
 Open `http://localhost:8080` in your browser.
 
+#### Readings
+You can find out more tutorials [here](https://rasa.com/docs/rasa/messaging-and-voice-channels/), including how to connect Rasa to:
+* Your Own Website
+* Facebook Messenger
+* Slack
+* Telegram
+* Twilio
+* ...
+
+
+
 
 ### Interactive Voice Response
 
-
+> Comming Soon in Lab 2
 
 
 ## Known Issue

@@ -100,6 +100,10 @@ nlu:
     - lisbon
     - amsterdam
     - seattle
+    - hongkong
+    - shanghai
+    - beijing
+    - berlin
 - intent: where_i_live
   examples: |
     - please remember that i live in [Amsterdam](place)?
