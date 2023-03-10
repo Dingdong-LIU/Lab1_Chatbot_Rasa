@@ -15,7 +15,9 @@ We use these two packages so that we don't need to worry about formatting date a
 To run this project, you need 
 ```bash
 # Change directory to 01-action
-cd ./chatbot/01-action
+cd ./chatbot/01-custom-action
+# Train rasa model
+rasa train
 # Start Action server
 rasa run actions --port 5055
 ```
