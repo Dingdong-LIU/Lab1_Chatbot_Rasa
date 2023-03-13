@@ -74,7 +74,7 @@ It helps to understand custom actions and slots before we talk about forms. In t
 The code can be found in the `./chatbot/01-custom-actions` folder.
 
 ### 2. Form
-We created a pizza ordering chatbot that collects information according to a question table. 
+We created a pizza-ordering chatbot that collects information according to a question table. 
 
 The code can be found in the `./chatbot/02-forms-pizza-ordering-chatbot`.
 
@@ -84,9 +84,28 @@ You can refer to [Rasa's learning center](https://learning.rasa.com/) for more e
 
 ## Web Interface
 
+Web-interface in this section is independent of `chatbot`. You can implement a chatbot first and then connect it to UI.
+> This is a preview of what a chatbot can look like with a UI. We will elaberate more about it on Lab 2. I'm releasing it as a preview version.
+### Install Packages
+You will need to install `node.js`, `nvm (optional)`, `yarn` before you can use this UI.
+* [Recommended for UNIX, macOS] Install `nvm` - please follow the official guide [here](https://github.com/nvm-sh/nvm#install--update-script). And use `nvm` to install `node.js` following [examples on GitHub](https://github.com/nvm-sh/nvm#install--update-script). We recommend installing the latest LTS version.
+```bash
+nvm install --lts
+```
+After it finishes,
+```bash
+npm install --global yarn
+```
+* [Alternative] Install `node.js` directly - please follow the [official guide here](https://nodejs.org/en/download/). After installation, run
+```bash
+npm install --global yarn
+```
+
+
+
 ### Chatroom
 
-The project `./UI/chatroom-source` provides a basic interface for interacting with bots in the webpage, which supports text and voice as input. Please refer to https://github.com/scalableminds/chatroom for more details.
+The project `./UI/chatroom-source` provides a basic interface for interacting with bots on the webpage, which supports text and voice as input. Please refer to https://github.com/scalableminds/chatroom for more details.
 
 * In your Rasa bot setup, make sure to include the Rasa [REST channel](https://rasa.com/docs/rasa/user-guide/connectors/your-own-website/#rest-channels) in your `credentials.yml` file:
 ```bash
@@ -94,7 +113,7 @@ rest:
   # pass
 ```
 
-* Install the dependencies for web application
+* Install the dependencies for the web application
 ```bash
 cd UI/chatroom-source
 # install dependencies if you have not installed
