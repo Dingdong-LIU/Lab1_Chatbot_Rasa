@@ -45,7 +45,7 @@ class ActionTellTime(Action):
             return []
         
         # Find the timezone
-        coords = self.geolocator.gecode(current_place)
+        coords = self.geolocator.geocode(current_place)
         tz_string = self.tf.timezone_at(lng=coords.longitude, lat=coords.latitude)
         # equivalent to
         # tz_string = city_db.get(current_place, None)
@@ -56,13 +56,18 @@ class ActionTellTime(Action):
             dispatcher.utter_message(text=msg)
             return []
                 
-        msg = f"It's {utc.to(city_db[current_place]).format('HH:mm')} in {current_place} now."
+        msg = f"It's {utc.to(tz_string).format('HH:mm')} in {current_place} now."
         dispatcher.utter_message(text=msg)
         
         return []
 
 
 class ActionRememberWhere(Action):
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.geolocator = Nominatim(user_agent="anyName")
+        self.tf = TimezoneFinder()
 
     def name(self) -> Text:
         return "action_remember_where"
@@ -78,7 +83,11 @@ class ActionRememberWhere(Action):
             dispatcher.utter_message(text=msg)
             return []
         
-        tz_string = city_db.get(current_place, None)
+        # Find the timezone
+        # tz_string = city_db.get(current_place, None)
+        coords = self.geolocator.geocode(current_place)
+        tz_string = self.tf.timezone_at(lng=coords.longitude, lat=coords.latitude)
+
         if not tz_string:
             msg = f"I didn't recognize {current_place}. Is it spelled correctly?"
             dispatcher.utter_message(text=msg)
@@ -92,6 +101,11 @@ class ActionRememberWhere(Action):
 
 
 class ActionTimeDifference(Action):
+
+    def __init__(self) -> None:
+        super().__init__()
+        self.geolocator = Nominatim(user_agent="anyName")
+        self.tf = TimezoneFinder()
 
     def name(self) -> Text:
         return "action_time_difference"
@@ -112,14 +126,20 @@ class ActionTimeDifference(Action):
             dispatcher.utter_message(text=msg)
             return []
         
-        tz_string = city_db.get(timezone_to, None)
-        if not tz_string:
+        # tz_string = city_db.get(timezone_to, None)
+        coords_to = self.geolocator.geocode(timezone_to)
+        tz_string_to = self.tf.timezone_at(lng=coords_to.longitude, lat=coords_to.latitude)
+
+        coords_in = self.geolocator.geocode(timezone_in)
+        tz_string_in = self.tf.timezone_at(lng=coords_in.longitude, lat=coords_in.latitude)
+
+        if not tz_string_to:
             msg = f"I didn't recognize {timezone_to}. Is it spelled correctly?"
             dispatcher.utter_message(text=msg)
             return []
         
-        t1 = arrow.utcnow().to(city_db[timezone_to])
-        t2 = arrow.utcnow().to(city_db[timezone_in])
+        t1 = arrow.utcnow().to(tz_string_to)
+        t2 = arrow.utcnow().to(tz_string_in)
         max_t, min_t = max(t1, t2), min(t1, t2)
         diff_seconds = dateparser.parse(str(max_t)[:19]) - dateparser.parse(str(min_t)[:19])
         diff_hours = int(diff_seconds.seconds/3600)
