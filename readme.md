@@ -170,3 +170,4 @@ You can find out more tutorials [here](https://rasa.com/docs/rasa/messaging-and-
 ## Known Issue
 
 1. If you prefer <code>Rasa 2.x</code>, you can refer to last year's tutorial by Qingyu: [Qingyu's Rasa 2 Tutorial](https://github.com/QingyuGuo/rasa-2.5-tutorial). Qingyu's tutorial is based on Rasa 2.x</code> is **NOT** compatible with <code>Apple Silicon Mac</code>.
+2. For <code>Apple Silicon Mac</code> users. Make sure you have the latest version of operating system, and install `Miniconda3 macOS Apple M1 64-bit` version of `Miniconda` according to the [official guide](https://docs.conda.io/en/latest/miniconda.html#latest-miniconda-installer-links).
